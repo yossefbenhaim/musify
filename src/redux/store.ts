@@ -1,12 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slice/counterSlice';
+import userSlice from './slice/userSlice';
 
+import statusSlider from './slice/statusSlider';
 const store = configureStore({
     reducer: {
-        counter: counterReducer,
+        nameUser: userSlice,
+        statusSlider: statusSlider,
     },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type UserStor = ReturnType<typeof store.getState>;
+
+export type statusSlider = ReturnType<typeof store.getState>;
 
 export default store;

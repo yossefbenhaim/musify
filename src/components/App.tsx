@@ -1,37 +1,28 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/store';
+import Login from './login/login';
+import Navigation from './navigation/navigation';
 import {
-    increment,
-    decrement,
-    incrementByAmount,
-} from '../redux/slice/counterSlice';
-
-import './App.css';
+    BrowserRouter,
+    Route,
+    Routes,
+    createRoutesFromElements,
+} from 'react-router-dom';
+import TemplateSongs from './templateSongs/templateSongs';
+import TemplatePlaylist from './templatePlaylist/templatePlaylist';
+import TemplateFavorites from './templateFavorites/templateFavorites';
 
 const App: React.FC = () => {
-    const count = useSelector((state: RootState) => state.counter.value);
-    const dispatch = useDispatch();
-
-    const handleIncrement = () => {
-        dispatch(increment());
-    };
-
-    const handleDecrement = () => {
-        dispatch(decrement());
-    };
-
-    const handleIncrementByAmount = () => {
-        dispatch(incrementByAmount(5));
-    };
-
     return (
-        <div>
-            <h1>Count: {count}</h1>
-            <button onClick={handleIncrement}>Increment</button>
-            <button onClick={handleDecrement}>Decrement</button>
-            <button onClick={handleIncrementByAmount}>Increment by 5</button>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<Login />}></Route>
+                <Route path="firstPage" element={<Navigation />}>
+                    <Route path="songs" element={<TemplateSongs />} />
+                    <Route path="playlist" element={<TemplatePlaylist />} />
+                    <Route path="favorites" element={<TemplateFavorites />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 };
 
