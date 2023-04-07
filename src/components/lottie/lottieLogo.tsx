@@ -12,7 +12,6 @@ const MyLottieAnimation = () => {
             autoplay: true,
             path: '/src/spootify.json',
         });
-        console.log('test');
 
         animation.play();
     }, []);
